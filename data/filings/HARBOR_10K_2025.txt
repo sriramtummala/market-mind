@@ -1,0 +1,33 @@
+HARBOR FINANCIAL GROUP — FORM 10-K EXCERPT (FISCAL YEAR 2025)
+[Synthetic filing generated for demo/testing purposes only — not a real company]
+
+ITEM 1. BUSINESS
+Harbor Financial Group ("Harbor", "the Company") is a regional bank holding company
+operating approximately 210 branch locations across the southeastern United States. As of
+fiscal year end, Harbor had total assets of $38.4 billion and a market capitalization of
+approximately $4.1 billion.
+
+ITEM 1A. RISK FACTORS
+Interest Rate Risk. Harbor's net interest margin is sensitive to changes in benchmark
+interest rates. A rapid decline in interest rates could compress the Company's net interest
+margin and reduce profitability.
+
+Credit Risk. The Company maintains a loan portfolio concentrated in commercial real estate,
+representing approximately 28% of total loans outstanding. A downturn in regional commercial
+real estate values could increase loan losses and require additional loan loss provisions.
+
+Regulatory Capital Risk. Harbor is subject to capital adequacy requirements under
+applicable federal banking regulations. As of fiscal year end, the Company's Common Equity
+Tier 1 (CET1) capital ratio was 10.8%, above the regulatory minimum. Failure to maintain
+required capital ratios could restrict the Company's ability to pay dividends or repurchase
+shares.
+
+Deposit Concentration Risk. Approximately 22% of the Company's total deposits are held by
+commercial customers with balances exceeding FDIC insurance limits, which could increase
+the risk of deposit outflows during periods of market stress.
+
+ITEM 7. MANAGEMENT'S DISCUSSION AND ANALYSIS
+Net interest income for fiscal year 2025 was $1.05 billion, compared to $980 million in the
+prior fiscal year. The provision for credit losses was $62 million, up from $48 million,
+reflecting increased reserves against the commercial real estate portfolio. Return on average
+equity was 11.2% for fiscal year 2025.
