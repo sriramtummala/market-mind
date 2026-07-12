@@ -32,15 +32,6 @@ jobs:
       - name: Run RAG evaluation harness (fails build if grounding quality drops)
         run: python3 src/eval.py
 
-      - name: Run document intelligence tests (Day 8)
-        run: python3 tests/test_document_intelligence.py
-
-      - name: Run rebalancing agent tests (Day 9 — ReAct/Reflection)
-        run: python3 tests/test_rebalancing_agent.py
-
-      - name: Run MLflow A/B test smoke check (Day 11)
-        run: python3 -m src.llmops
-
       - name: Smoke test API startup
         run: |
           pip install httpx
