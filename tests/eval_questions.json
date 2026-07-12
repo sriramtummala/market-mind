@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What was ACME Robotics' fiscal year 2025 revenue?",
+    "expected_source": "ACME_10K_2025.txt",
+    "expected_keywords": ["1.42 billion", "18%"]
+  },
+  {
+    "question": "What percentage of ACME's lidar sensors came from a single supplier?",
+    "expected_source": "ACME_10K_2025.txt",
+    "expected_keywords": ["60%"]
+  },
+  {
+    "question": "What is Beacon Biotech's accumulated deficit?",
+    "expected_source": "BEACON_10K_2025.txt",
+    "expected_keywords": ["612 million"]
+  },
+  {
+    "question": "What is Beacon Biotech's lead product candidate and what condition does it target?",
+    "expected_source": "BEACON_10K_2025.txt",
+    "expected_keywords": ["BX-401", "rheumatoid arthritis"]
+  },
+  {
+    "question": "What is Harbor Financial's CET1 capital ratio?",
+    "expected_source": "HARBOR_10K_2025.txt",
+    "expected_keywords": ["10.8%"]
+  },
+  {
+    "question": "What percentage of Harbor Financial's loans are in commercial real estate?",
+    "expected_source": "HARBOR_10K_2025.txt",
+    "expected_keywords": ["28%"]
+  },
+  {
+    "question": "What market cap threshold requires compliance officer sign-off before a trade?",
+    "expected_source": "trading_compliance_policy.md",
+    "expected_keywords": ["$1 billion"]
+  },
+  {
+    "question": "What accumulated deficit threshold triggers a mandatory going-concern HIGH RISK flag under firm policy?",
+    "expected_source": "trading_compliance_policy.md",
+    "expected_keywords": ["$500 million"]
+  }
+]

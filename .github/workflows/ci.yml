@@ -1,0 +1,58 @@
+name: MarketMind CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Tesseract (Day 8 OCR)
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run guardrail unit tests
+        run: python3 tests/test_guardrails.py
+
+      - name: Build vector index (Day 1 pipeline)
+        run: python3 src/ingest.py
+
+      - name: Run RAG evaluation harness (fails build if grounding quality drops)
+        run: python3 src/eval.py
+
+      - name: Run document intelligence tests (Day 8)
+        run: python3 tests/test_document_intelligence.py
+
+      - name: Run rebalancing agent tests (Day 9 — ReAct/Reflection)
+        run: python3 tests/test_rebalancing_agent.py
+
+      - name: Run MLflow A/B test smoke check (Day 11)
+        run: python3 -m src.llmops
+
+      - name: Smoke test API startup
+        run: |
+          pip install httpx
+          python3 -c "from fastapi.testclient import TestClient; from src.api import app; c = TestClient(app); r = c.get('/health'); assert r.status_code == 200; print('API health check OK')"
+
+      - name: Validate Kubernetes manifests (Day 12)
+        run: |
+          pip install pyyaml
+          python3 -c "
+          import yaml, glob
+          for f in glob.glob('k8s/*.yaml'):
+              with open(f) as fh:
+                  doc = yaml.safe_load(fh)
+                  print(f, '-> valid, kind:', doc['kind'])
+          "
