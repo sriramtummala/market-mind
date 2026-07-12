@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: marketmind-api
+spec:
+  selector:
+    app: marketmind-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
+  # Change to LoadBalancer (or add an Ingress) to expose externally in a
+  # real cluster; ClusterIP is the safe default for internal-only access.

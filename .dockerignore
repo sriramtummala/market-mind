@@ -1,0 +1,23 @@
+.venv/
+venv/
+.git/
+.github/
+
+# Secrets — never bake these into an image layer
+.env
+.env.*
+*.pem
+*.key
+
+# Rebuilt inside the image by `RUN python3 src/ingest.py`
+index/
+
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+mlruns/
+mlartifacts/
+.vscode/
+.idea/
