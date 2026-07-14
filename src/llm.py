@@ -201,7 +201,12 @@ def _mock_tool_response(messages: list) -> dict:
     the third returns a final answer. Real mode lets the model decide tool
     calls dynamically; this just proves the loop mechanics work end to end.
     """
-    num_tool_results = sum(1 for m in messages if m.get("role") == "tool")
+    def _has_tool_result(m):
+        content = m.get("content")
+        return (m.get("role") == "user" and isinstance(content, list)
+                and any(isinstance(b, dict) and b.get("type") == "tool_result" for b in content))
+
+    num_tool_results = sum(1 for m in messages if _has_tool_result(m))
     if num_tool_results == 0:
         return {"stop_reason": "tool_use", "text": "",
                 "tool_calls": [{"id": "call_1", "name": "get_portfolio_holdings",
