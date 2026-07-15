@@ -8,11 +8,19 @@ run, and demoed end-to-end without needing a paid API key on day 1.
 
 Swap MOCK_MODE off once you plug in your own key — nothing else in the
 codebase needs to change.
+
+LangSmith tracing (Day 11): call_llm()/call_llm_with_tools() are wrapped
+with @traceable so every prompt, tool call, latency, and (for real calls)
+token usage is traced automatically. @traceable is a no-op when
+LANGCHAIN_TRACING_V2 isn't set to "true", so this has zero effect/cost for
+anyone without a LangSmith account — nothing is sent anywhere unless you
+opt in via .env.
 """
 import os
 import json
 
 from dotenv import load_dotenv
+from langsmith import traceable, get_current_run_tree
 
 load_dotenv()
 
@@ -25,6 +33,23 @@ if not MOCK_MODE:
 MODEL = "claude-sonnet-4-6"
 
 
+def _trace_token_usage(usage) -> None:
+    """Attaches Anthropic's real token counts to the active LangSmith run
+    (if tracing is enabled) using the usage_metadata key LangSmith's UI
+    reads for cost/latency dashboards. No-op when tracing is off."""
+    run_tree = get_current_run_tree()
+    if run_tree is None or usage is None:
+        return
+    run_tree.add_metadata({
+        "usage_metadata": {
+            "input_tokens": usage.input_tokens,
+            "output_tokens": usage.output_tokens,
+            "total_tokens": usage.input_tokens + usage.output_tokens,
+        }
+    })
+
+
+@traceable(name="call_llm", run_type="llm")
 def call_llm(system: str, user: str, max_tokens: int = 800, role: str = "research") -> str:
     """Single entry point every agent uses to talk to the LLM.
 
@@ -41,9 +66,11 @@ def call_llm(system: str, user: str, max_tokens: int = 800, role: str = "researc
         system=system,
         messages=[{"role": "user", "content": user}],
     )
+    _trace_token_usage(resp.usage)
     return "".join(block.text for block in resp.content if block.type == "text")
 
 
+@traceable(name="call_llm_with_tools", run_type="llm")
 def call_llm_with_tools(system: str, messages: list, tools: list, role: str = "research") -> dict:
     """
     Tool-calling entry point for ReAct-style agents (Day 9).
@@ -63,6 +90,7 @@ def call_llm_with_tools(system: str, messages: list, tools: list, role: str = "r
         messages=messages,
         tools=tools,
     )
+    _trace_token_usage(resp.usage)
     tool_calls = [
         {"id": b.id, "name": b.name, "input": b.input}
         for b in resp.content if b.type == "tool_use"

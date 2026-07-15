@@ -22,6 +22,7 @@ dist/
 # MLflow local tracking artifacts
 mlruns/
 mlartifacts/
+mlflow.db
 
 # Generated FAISS index (rebuild via src/ingest.py)
 index/
