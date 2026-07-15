@@ -5,7 +5,7 @@ Responsible AI guardrails:
   - Prompt injection detection on user input (heuristic pattern match +
     an explicit test suite in tests/test_guardrails.py).
   - Citation/grounding check on LLM output (used as a lightweight
-    hallucination guard alongside the RAGAS eval in Day 6).
+    hallucination guard alongside the RAGAS eval).
 """
 import re
 

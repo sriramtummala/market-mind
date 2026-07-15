@@ -1,5 +1,5 @@
 """
-llmops.py — Day 11: MLflow experiment tracking for eval runs and a
+llmops.py — MLflow experiment tracking for eval runs and a
 compliance-agent system-prompt A/B test.
 
 Uses a local, file-based MLflow tracking store (mlruns/, already
@@ -27,7 +27,7 @@ mlflow.set_experiment("marketmind")
 
 
 def log_eval_run(run_name: str = "rag_eval") -> dict:
-    """Runs the Day 6 offline RAG eval harness and logs its summary metrics
+    """Runs the offline RAG eval harness and logs its summary metrics
     as an MLflow run, so retrieval/grounding quality can be compared across
     commits or prompt changes over time instead of just read off stdout once."""
     summary = run_eval()

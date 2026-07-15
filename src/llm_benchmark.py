@@ -1,5 +1,5 @@
 """
-llm_benchmark.py — Day 10
+llm_benchmark.py
 
 Sends the same set of trading-terminology questions to every configured
 provider and logs latency + response side by side, so you can make an

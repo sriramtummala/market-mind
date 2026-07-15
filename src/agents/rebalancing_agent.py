@@ -54,7 +54,7 @@ tools to look up real holdings and prices before making any recommendation.
 Never fabricate a number you could have looked up. Once you have enough
 information, give a specific, actionable rebalancing recommendation."""
 
-# --- Mock data stores (Day 9 uses these instead of a live brokerage API) ---
+# --- Mock data stores (used instead of a live brokerage API) ---
 _MOCK_HOLDINGS = {
     "client-1": {"ACME": 45.0, "BEACON": 10.0, "HARBOR": 20.0, "cash": 25.0},
 }

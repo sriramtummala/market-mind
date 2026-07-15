@@ -1,5 +1,5 @@
 """
-dashboard/app.py — Day 7
+dashboard/app.py
 
 Simple "trading desk assistant" dashboard simulating what a compliance
 officer / trader would see. Talks directly to the API layer (src/api.py)

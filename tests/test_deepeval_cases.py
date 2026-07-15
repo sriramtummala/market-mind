@@ -1,5 +1,5 @@
 """
-DeepEval assertion-style test suite (Day 11).
+DeepEval assertion-style test suite.
 
 These check structural/business invariants of agent outputs — valid verdict
 enums, score bounds, no fabricated citations, the Policy 8 human-approval

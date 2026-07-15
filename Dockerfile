@@ -2,7 +2,7 @@ FROM python:3.14-slim
 
 WORKDIR /app
 
-# Day 8 document intelligence needs the Tesseract binary (not just the
+# Document intelligence needs the Tesseract binary (not just the
 # Python wrapper) for OCR fallback on scanned documents.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     tesseract-ocr \

@@ -9,7 +9,7 @@ run, and demoed end-to-end without needing a paid API key on day 1.
 Swap MOCK_MODE off once you plug in your own key — nothing else in the
 codebase needs to change.
 
-LangSmith tracing (Day 11): call_llm()/call_llm_with_tools() are wrapped
+LangSmith tracing: call_llm()/call_llm_with_tools() are wrapped
 with @traceable so every prompt, tool call, latency, and (for real calls)
 token usage is traced automatically. @traceable is a no-op when
 LANGCHAIN_TRACING_V2 isn't set to "true", so this has zero effect/cost for
@@ -73,7 +73,7 @@ def call_llm(system: str, user: str, max_tokens: int = 800, role: str = "researc
 @traceable(name="call_llm_with_tools", run_type="llm")
 def call_llm_with_tools(system: str, messages: list, tools: list, role: str = "research") -> dict:
     """
-    Tool-calling entry point for ReAct-style agents (Day 9).
+    Tool-calling entry point for ReAct-style agents.
     Returns {"stop_reason": "tool_use"|"end_turn", "tool_calls": [...], "text": "..."}
 
     In MOCK_MODE, returns a deterministic scripted sequence of tool calls
@@ -135,7 +135,7 @@ def _mock_response(role: str, user: str = "") -> str:
 def _mock_extract_fields(user: str) -> str:
     """
     Regex-based field extraction used in MOCK_MODE so the document
-    intelligence demo (Day 8) genuinely produces correct structured data
+    intelligence demo genuinely produces correct structured data
     from the sample documents without needing an API key. A real LLM call
     handles messier/less structured real-world documents far better than
     this — this is a mock stand-in, not a production extraction strategy.
@@ -210,7 +210,7 @@ def _mock_extract_fields(user: str) -> str:
 
 
 def _mock_reflection(user: str) -> str:
-    """Mock critique for the Reflection pattern (Day 9). Deliberately flags
+    """Mock critique for the Reflection pattern. Deliberately flags
     an issue the first time so the ReAct/Reflection loop visibly revises
     its draft — demonstrating the pattern rather than always passing."""
     if "REVISED" in user.upper():
@@ -224,7 +224,7 @@ def _mock_reflection(user: str) -> str:
 
 def _mock_tool_response(messages: list) -> dict:
     """
-    Deterministic scripted ReAct sequence for MOCK_MODE (Day 9): the first
+    Deterministic scripted ReAct sequence for MOCK_MODE: the first
     call requests portfolio holdings, the second requests a price quote,
     the third returns a final answer. Real mode lets the model decide tool
     calls dynamically; this just proves the loop mechanics work end to end.
